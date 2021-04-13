@@ -1,7 +1,9 @@
 package model;
 
 import javax.persistence.*;
-
+/**
+ * @author: Diego Patrício
+ * */
 
 @Entity
 @Table(name = "tbl_cliente")

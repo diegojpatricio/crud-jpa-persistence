@@ -7,6 +7,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 
+/**
+ * @author: Diego Patrício
+ * */
 public class ClienteRepository {
 
     EntityManagerFactory entityManagerFactory;
@@ -25,11 +28,14 @@ public class ClienteRepository {
 
     }
 
-    public void deletarCliente(Cliente cliente){
+    public Cliente atualizarCliente(Integer id){
         entityManager.getTransaction().begin();
-        entityManager.remove(cliente);
+        Cliente cliente = entityManager.find(Cliente.class, id);
+        entityManager.merge(cliente);
         entityManager.getTransaction().commit();
         entityManagerFactory.close();
+        return cliente;
+
 
     }
 
@@ -39,5 +45,15 @@ public class ClienteRepository {
         entityManager.getTransaction().commit();
         entityManagerFactory.close();
         return cliente;
+    }
+
+    public Cliente deletarCliente(Integer id){
+        entityManager.getTransaction().begin();
+        Cliente cliente = entityManager.find(Cliente.class, id);
+        entityManager.remove(cliente);
+        entityManager.getTransaction().commit();
+        entityManagerFactory.close();
+        return cliente;
+
     }
 }
