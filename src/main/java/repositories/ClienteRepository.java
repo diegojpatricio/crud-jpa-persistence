@@ -24,25 +24,27 @@ public class ClienteRepository {
         entityManager.getTransaction().begin();
         entityManager.merge(cliente);
         entityManager.getTransaction().commit();
+        entityManager.close();
         entityManagerFactory.close();
-
     }
 
-    public Cliente atualizarCliente(Integer id){
+    public Cliente atualizarCliente(Integer id, String nome, String cpf){
         entityManager.getTransaction().begin();
         Cliente cliente = entityManager.find(Cliente.class, id);
-        entityManager.merge(cliente);
+        cliente.setNome(nome);
+        cliente.setCpf(cpf);
+        //entityManager.merge(cliente);
         entityManager.getTransaction().commit();
+        entityManager.close();
         entityManagerFactory.close();
         return cliente;
-
-
     }
 
     public Cliente buscarCliente(Integer id){
         entityManager.getTransaction().begin();
         Cliente cliente = entityManager.find(Cliente.class, id);
         entityManager.getTransaction().commit();
+        entityManager.close();
         entityManagerFactory.close();
         return cliente;
     }
@@ -52,6 +54,7 @@ public class ClienteRepository {
         Cliente cliente = entityManager.find(Cliente.class, id);
         entityManager.remove(cliente);
         entityManager.getTransaction().commit();
+        entityManager.close();
         entityManagerFactory.close();
         return cliente;
 

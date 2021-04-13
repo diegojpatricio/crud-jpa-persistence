@@ -68,9 +68,9 @@ public class Application {
                             case "3":
                                 String updateId = JOptionPane.showInputDialog("Insira o ID do Cliente que deseja Atualizar: ");
                                 int idUpdate = Integer.parseInt(updateId);
-                                Cliente upc = cr.atualizarCliente(idUpdate);
-                                upc.setNome(JOptionPane.showInputDialog("Nome: "));
-                                upc.setCpf(JOptionPane.showInputDialog("CPF: "));
+                                String nome = JOptionPane.showInputDialog("Nome: ");
+                                String cpf = JOptionPane.showInputDialog("CPF: ");
+                                cr.atualizarCliente(idUpdate, nome, cpf);
                                 JOptionPane.showMessageDialog(null, "O cliente foi atualizado com sucesso!");
                                 break;
 
