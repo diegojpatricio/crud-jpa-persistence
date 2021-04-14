@@ -5,6 +5,10 @@ import model.Cliente;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author: Diego Patrício
  * */
@@ -15,9 +19,6 @@ public class ClienteDAO {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("automacaocomercial");
         return entityManagerFactory.createEntityManager();
     }
-
-
-
 
 
     public Cliente salvarCliente(Cliente cliente){
@@ -61,6 +62,21 @@ public class ClienteDAO {
             em.close();
         }
         return cliente;
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<Cliente> listarClientes(){
+        EntityManager em = getEM();
+        List<Cliente> clientes;
+        try {
+            Query consulta = em.createQuery("select cliente FROM Cliente cliente");
+            clientes = consulta.getResultList();
+        } catch (Exception e){
+            clientes = new ArrayList<>();
+        } finally {
+            em.close();
+        }
+        return clientes;
     }
 
 }

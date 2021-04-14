@@ -8,7 +8,7 @@
             <property name="hibernate.archive.autodetection" value="class" />
 
             <!-- Conexão com o banco de dados -->
-            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MariaDBDialect" />
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost/automacaocomercial" />
             <property name="hibernate.connection.user" value="root" />

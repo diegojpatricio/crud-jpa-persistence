@@ -1,10 +1,15 @@
 package repositories;
 
+import model.Cliente;
 import model.Produto;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author: Diego Patrício
  * */
@@ -15,10 +20,6 @@ public class ProdutoDAO {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("automacaocomercial");
         return entityManagerFactory.createEntityManager();
     }
-
-
-
-
 
     public Produto salvarProduto(Produto produto){
        EntityManager em = getEM();
@@ -61,6 +62,20 @@ public class ProdutoDAO {
             em.close();
         }
         return produto;
+    }
+
+    public List<Produto> listarProdutos(){
+        EntityManager em = getEM();
+        List<Produto> produtos;
+        try {
+            Query consulta = em.createQuery("select produto FROM Produto produto");
+            produtos = consulta.getResultList();
+        } catch (Exception e){
+            produtos = new ArrayList<>();
+        } finally {
+            em.close();
+        }
+        return produtos;
     }
 
 }

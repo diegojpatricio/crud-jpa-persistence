@@ -4,7 +4,7 @@ import repositories.ClienteDAO;
 import repositories.ProdutoDAO;
 
 import javax.swing.*;
-
+import java.util.List;
 
 
 /**
@@ -32,6 +32,7 @@ public class Application {
                                     + "2 - Buscar Cliente \n"
                                     + "3 - Atualizar Cliente \n"
                                     + "4 - Deletar Cliente \n"
+                                    + "5 - Listar Clientes \n"
                                     + "0 - Sair";
 
                     while (!opcao2.equals("0")) {
@@ -64,6 +65,9 @@ public class Application {
                             Cliente clienteDelete = cr.deletarCliente(idDelete);
                             JOptionPane.showMessageDialog(null, "O cliente " + clienteDelete.getNome()
                                     + " foi Deletado.");
+                        }else if (opcao2.equals("5")) {
+                            List<Cliente> clientes = cr.listarClientes();
+                            JOptionPane.showMessageDialog(null, clientes);
                         }
                     }
                     opcao = ""; opcao2 = "";
@@ -74,6 +78,7 @@ public class Application {
                                     + "2 - Buscar Produto \n"
                                     + "3 - Atualizar Produto \n"
                                     + "4 - Deletar Produto \n"
+                                    + "5 - Listar Produtos \n"
                                     + "0 - Sair";
 
                     while (!opcao2.equals("0")) {
@@ -106,6 +111,9 @@ public class Application {
                             Produto produtoDelete = pr.deletarProduto(idDelete);
                             JOptionPane.showMessageDialog(null, "O produto " + produtoDelete.getDescricao()
                                     + " foi Deletado.");
+                        }else if (opcao2.equals("5")) {
+                            List<Produto> produtos = pr.listarProdutos();
+                            JOptionPane.showMessageDialog(null, produtos);
                         }
                     }
                     opcao = ""; opcao2 = "";
